@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="110dp"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:onClick="onClickGallery"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_like" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="110dp"
+        android:layout_height="150sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:adjustViewBounds="true"
+        android:onClick="onClickGallery"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_like" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="110dp"
+        android:layout_height="150sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/imageView2"
+        android:adjustViewBounds="true"
+        android:onClick="onClickGallery"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_like" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="110dp"
+        android:layout_height="150sp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:onClick="onClickGallery"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_like" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="110dp"
+        android:layout_height="150sp"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/imageView4"
+        android:adjustViewBounds="true"
+        android:onClick="onClickGallery"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_like" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="144dp"
+        android:text="Dodaj" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/imageView5">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Poniedziałek" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radioGroup"
+            android:text="Środa" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/radioGroup"
+            android:text="Czwartek" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wtorek" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/radioGroup"
+            android:text="Piątek" />
+
+    </RadioGroup>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
+
+</RelativeLayout>
