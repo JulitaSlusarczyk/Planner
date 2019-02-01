@@ -17,12 +17,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -42,15 +40,10 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        // Here, thisActivity is the current activity
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1024);
-
-
         }
         else
         {
@@ -109,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            lista.add("raw//storage/emulated/0/Pictures/Bacon Picture 8.jpg");
+            lista.add("/storage/emulated/0/Pictures/Bacon Picture 8.jpg");
         }
         //............................
         if(list2.size()>=1)
@@ -118,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            lista.add("raw//storage/emulated/0/Pictures/Bacon Picture 8.jpg");
+            lista.add("/storage/emulated/0/Pictures/Bacon Picture 8.jpg");
         }
         //............................
         if(list3.size()>=1)
@@ -127,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            lista.add("none");
+            lista.add("/raw//storage/emulated/0/Pictures/Bacon Picture 8.jpg");
         }
         //............................
         if(list4.size()>=1)
@@ -136,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            lista.add("none");
+            lista.add("/raw//storage/emulated/0/Pictures/Bacon Picture 8.jpg");
         }
         //............................
         if(list5.size()>=1)
@@ -145,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            lista.add("none");
+            lista.add("/raw//storage/emulated/0/Pictures/Bacon Picture 8.jpg");
         }
     }
 
@@ -180,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
         //przyklad
         File imgFile = new  File(lista.get(1));
-        Toast.makeText(this, imgFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, imgFile.getPath(), Toast.LENGTH_LONG).show();
 
         if(imgFile.exists()){
 
@@ -220,83 +213,34 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.imageView:
                         Uri imageUri = data.getData();
+                        imgPicture.setImageURI(imageUri);
+
                         list.add(imageUri.getPath().toString());
-                        InputStream inputStream;
-                        try
-                        {
-                            inputStream = getContentResolver().openInputStream(imageUri);
-                            Bitmap img = BitmapFactory.decodeStream(inputStream);
-                            imgPicture.setImageBitmap(img);
-                        }
-                        catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Nie mozna otworzyc", Toast.LENGTH_LONG).show();
-                        }
-                        String zmienna = list.get(list.size()-1);
                         Toast.makeText(this, imageUri.getPath().toString(), Toast.LENGTH_LONG).show();
                     break;
                     case R.id.imageView2:
                         Uri imageUri2 = data.getData();
-                        InputStream inputStream2;
-                        try
-                        {
-                            inputStream = getContentResolver().openInputStream(imageUri2);
-                            Bitmap img = BitmapFactory.decodeStream(inputStream);
-                            imgPicture2.setImageBitmap(img);
-                        }
-                        catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Nie mozna otworzyc", Toast.LENGTH_LONG).show();
-                        }
-                        Toast.makeText(this, imgPicture2.toString(), Toast.LENGTH_LONG).show();
+                        imgPicture2.setImageURI(imageUri2);
+
                         list2.add(imageUri2.getPath().toString());
+                        Toast.makeText(this, imageUri2.getPath().toString(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.imageView3:
                         Uri imageUri3 = data.getData();
-                        InputStream inputStream3;
-                        try
-                        {
-                            inputStream = getContentResolver().openInputStream(imageUri3);
-                            Bitmap img = BitmapFactory.decodeStream(inputStream);
-                            imgPicture3.setImageBitmap(img);
-                        }
-                        catch (FileNotFoundException e)
-                        {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Nie mozna otworzyc", Toast.LENGTH_LONG).show();
-                        }
+                        imgPicture3.setImageURI(imageUri3);
+
                         list3.add(imageUri3.getPath().toString());
                         break;
                     case R.id.imageView4:
                         Uri imageUri4 = data.getData();
-                        InputStream inputStream4;
-                        try
-                        {
-                            inputStream = getContentResolver().openInputStream(imageUri4);
-                            Bitmap img = BitmapFactory.decodeStream(inputStream);
-                            imgPicture4.setImageBitmap(img);
-                        }
-                        catch (FileNotFoundException e)
-                        {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Nie mozna otworzyc", Toast.LENGTH_LONG).show();
-                        }
+                        imgPicture4.setImageURI(imageUri4);
+
                         list4.add(imageUri4.getPath().toString());
                         break;
                     case R.id.imageView5:
                         Uri imageUri5 = data.getData();
-                        InputStream inputStream5;
-                        try
-                        {
-                            inputStream = getContentResolver().openInputStream(imageUri5);
-                            Bitmap img = BitmapFactory.decodeStream(inputStream);
-                            imgPicture5.setImageBitmap(img);
-                        }
-                        catch (FileNotFoundException e)
-                        {
-                            e.printStackTrace();
-                            Toast.makeText(this, "Nie mozna otworzyc", Toast.LENGTH_LONG).show();
-                        }
+                        imgPicture5.setImageURI(imageUri5);
+
                         list5.add(imageUri5.getPath().toString());
                         break;
                     default:
