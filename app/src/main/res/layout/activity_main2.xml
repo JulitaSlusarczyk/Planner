@@ -81,7 +81,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="144dp"
             android:text="Dodaj"
-            android:onClick="onButtonClick"/>
+            android:onClick="dzien"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="50dp"
             android:text="Save"
-            android:onClick="zapis"/>
+            android:onClick="zapis2"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="240dp"
             android:text="Load"
-            android:onClick="load"/>
+            android:onClick="odczyt"/>
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -116,32 +116,45 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Poniedziałek" />
+                android:text="Poniedziałek"
+                android:checked="true"
+                android:id="@+id/pon"/>
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wtorek" />
+                android:text="Wtorek"
+                android:id="@+id/wt"/>
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/radioGroup"
-                android:text="Środa" />
+                android:text="Środa"
+                android:id="@+id/sr"/>
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/radioGroup"
-                android:text="Czwartek" />
+                android:text="Czwartek"
+                android:id="@+id/czw"/>
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/radioGroup"
-                android:text="Piątek" />
+                android:text="Piątek"
+                android:id="@+id/pt"/>
 
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView4"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="59dp"
+            android:text="TextView" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
