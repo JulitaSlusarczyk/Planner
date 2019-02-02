@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,13 +32,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
+    private Button button, button2, button3, button4;
     private ImageView imgPicture, imgPicture2,imgPicture3, imgPicture4,imgPicture5;
-    private TextView textView;
+    private TextView textView, textView7;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     public int imd_id;
     List<String> lista, list, list2, list3, list4, list5;
     List<String> listpn, listwt, listsr, listczw, listpt;
+    private boolean isset = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
         }
         else {}
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        button = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button2);
+
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        textView = (TextView) findViewById(R.id.textView);
+        textView7 = (TextView) findViewById(R.id.textView7);
 
         imgPicture = (ImageView) findViewById(R.id.imageView);
         imgPicture2 = (ImageView) findViewById(R.id.imageView2);
@@ -294,6 +304,37 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             lista.add("None");
+        }
+    }
+
+    public void dzien()
+    {
+
+    }
+
+    public void plan(View v)
+    {
+        if(!isset)
+        {
+            button2.setText("Wróć");
+            isset = true;
+            button.setVisibility(View.GONE);
+            radioGroup.setVisibility(View.GONE);
+            textView.setVisibility(View.GONE);
+            textView7.setVisibility(View.VISIBLE);
+            button3.setVisibility(View.VISIBLE);
+            button4.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            button2.setText("Plan");
+            isset = false;
+            button.setVisibility(View.VISIBLE);
+            radioGroup.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.VISIBLE);
+            textView7.setVisibility(View.GONE);
+            button3.setVisibility(View.GONE);
+            button4.setVisibility(View.GONE);
         }
     }
 
