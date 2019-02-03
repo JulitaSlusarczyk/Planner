@@ -37,15 +37,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int IMAGE_GALLERY_REQUEST = 20;
-    private Button button, button2, button3, button4;
+    private Button button, button2, button3, button4, close, close2, close3, close4, close5;
     private ImageView imgPicture, imgPicture2,imgPicture3, imgPicture4,imgPicture5;
     private TextView textView, textView7;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     public int imd_id, day=1;
-    List<String> lista, list, list2, list3, list4, list5;
-    List<String> listpn, listwt, listsr, listczw, listpt;
-    List<String> dodatkowa = new ArrayList<>();
+    List<String> lista = new ArrayList<>(), list = new ArrayList<>(), list2 = new ArrayList<>(), list3 = new ArrayList<>(), list4 = new ArrayList<>(), list5 = new ArrayList<>(), listpn = new ArrayList<>(), listwt = new ArrayList<>(), listsr = new ArrayList<>(), listczw = new ArrayList<>(), listpt = new ArrayList<>(), dodatkowa = new ArrayList<>();
     private boolean isset = false;
     public File myFile;
 
@@ -77,34 +75,17 @@ public class MainActivity extends AppCompatActivity {
         imgPicture4 = (ImageView) findViewById(R.id.imageView4);
         imgPicture5 = (ImageView) findViewById(R.id.imageView5);
 
-        lista = new ArrayList<>();
-
-        list = new ArrayList<>();
-        list2 = new ArrayList<>();
-        list3 = new ArrayList<>();
-        list4 = new ArrayList<>();
-        list5 = new ArrayList<>();
-
-        listpn = new ArrayList<>();
-        listwt = new ArrayList<>();
-        listsr = new ArrayList<>();
-        listczw = new ArrayList<>();
-        listpt = new ArrayList<>();
+        close = (Button) findViewById(R.id.button5);
+        close2 = (Button) findViewById(R.id.button6);
+        close3 = (Button) findViewById(R.id.button7);
+        close4 = (Button) findViewById(R.id.button8);
+        close5 = (Button) findViewById(R.id.button9);
 
         myFile = new File("/sdcard/mysdfile.txt");
 
         zapis();
         zaladuj();
         Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
-    }
-
-    public void puste()
-    {
-        imgPicture.setImageResource(R.drawable.ic_like);
-        imgPicture2.setImageResource(R.drawable.ic_like);
-        imgPicture3.setImageResource(R.drawable.ic_like);
-        imgPicture4.setImageResource(R.drawable.ic_like);
-        imgPicture5.setImageResource(R.drawable.ic_like);
     }
 
     public void zaladuj()
@@ -193,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this, e.getMessage(),Toast.LENGTH_SHORT).show();
         }
-        puste();
     }
 
     public void wypelnij2()
@@ -284,45 +264,6 @@ public class MainActivity extends AppCompatActivity {
             {
                 lista.add(listpt.get(pt));
             }
-        }
-
-    }
-
-    public void odczyt(View v)
-    {
-//        try
-//        {
-//            File myFile2 = new File("/sdcard/mysdfile.txt");
-//            FileInputStream fIn = new FileInputStream(myFile2);
-//            BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
-//            String aDataRow = "";
-//            while ((aDataRow = myReader.readLine()) != null)
-//            {
-//                lista.add(aDataRow);
-//            }
-//            myReader.close();
-//            textView = (TextView) findViewById(R.id.textView);
-//            textView.setText(lista.get(0));
-//            Toast.makeText(v.getContext(),"Done reading SD 'mysdfile.txt'",Toast.LENGTH_SHORT).show();
-//        }
-//        catch (Exception e)
-//        {
-//            Toast.makeText(v.getContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
-//        }
-
-        String[] projection = {MediaStore.MediaColumns.DATA};
-        Cursor cur = getContentResolver().query(Uri.parse(lista.get(0)), projection, null, null, null);
-        if (cur != null)
-        {
-            imgPicture.setImageURI(Uri.parse(lista.get(0)));
-            Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
-            Toast.makeText(this, "Istnijee", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            //gdy nie znajdzie zdjęcia lub jest zapisane jako None
-            Toast.makeText(this,"None",Toast.LENGTH_SHORT).show();
-            imgPicture.setImageResource(R.drawable.ic_like);
         }
 
     }
@@ -903,6 +844,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void x1(View v)
+    {
+        list.add("None");
+        imgPicture.setImageResource(R.drawable.ic_like);
+        close.setVisibility(View.GONE);
+    }
+
+    public void x2(View v)
+    {
+        list2.add("None");
+        imgPicture2.setImageResource(R.drawable.ic_like);
+        close2.setVisibility(View.GONE);
+    }
+
+    public void x3(View v)
+    {
+        list3.add("None");
+        imgPicture3.setImageResource(R.drawable.ic_like);
+        close3.setVisibility(View.GONE);
+    }
+
+    public void x4(View v)
+    {
+        list4.add("None");
+        imgPicture4.setImageResource(R.drawable.ic_like);
+        close4.setVisibility(View.GONE);
+    }
+
+    public void x5(View v)
+    {
+        list5.add("None");
+        imgPicture5.setImageResource(R.drawable.ic_like);
+        close5.setVisibility(View.GONE);
+    }
+
     public void onClickGallery(View v)
     {
         imd_id = v.getId();
@@ -936,6 +912,7 @@ public class MainActivity extends AppCompatActivity {
                             Bitmap img = BitmapFactory.decodeStream(inputStream);
                             img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
                             imgPicture.setImageBitmap(img);
+                            close.setVisibility(View.VISIBLE);
                         }
                         catch (FileNotFoundException e)
                         {
@@ -954,6 +931,7 @@ public class MainActivity extends AppCompatActivity {
                             Bitmap img = BitmapFactory.decodeStream(inputStream2);
                             img = Bitmap.createScaledBitmap(img,imgPicture2.getWidth(),imgPicture2.getHeight(),true);
                             imgPicture2.setImageBitmap(img);
+                            close2.setVisibility(View.VISIBLE);
                         }
                         catch (FileNotFoundException e)
                         {
@@ -973,6 +951,7 @@ public class MainActivity extends AppCompatActivity {
                             Bitmap img = BitmapFactory.decodeStream(inputStream3);
                             img = Bitmap.createScaledBitmap(img,imgPicture3.getWidth(),imgPicture3.getHeight(),true);
                             imgPicture3.setImageBitmap(img);
+                            close3.setVisibility(View.VISIBLE);
                         }
                         catch (FileNotFoundException e) {
                             e.printStackTrace();
@@ -989,6 +968,7 @@ public class MainActivity extends AppCompatActivity {
                             Bitmap img = BitmapFactory.decodeStream(inputStream4);
                             img = Bitmap.createScaledBitmap(img,imgPicture4.getWidth(),imgPicture4.getHeight(),true);
                             imgPicture4.setImageBitmap(img);
+                            close4.setVisibility(View.VISIBLE);
                         }
                         catch (FileNotFoundException e)
                         {
@@ -1006,6 +986,7 @@ public class MainActivity extends AppCompatActivity {
                             Bitmap img = BitmapFactory.decodeStream(inputStream5);
                             img = Bitmap.createScaledBitmap(img,imgPicture5.getWidth(),imgPicture5.getHeight(),true);
                             imgPicture5.setImageBitmap(img);
+                            close5.setVisibility(View.VISIBLE);
                         }
                         catch (FileNotFoundException e) {
                             e.printStackTrace();
