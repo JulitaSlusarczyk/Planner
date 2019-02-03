@@ -2,8 +2,11 @@ package com.example.laptop.planner;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,7 +26,9 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main2);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -90,6 +96,15 @@ public class MainActivity extends AppCompatActivity {
         zapis();
         zaladuj();
         Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
+    }
+
+    public void puste()
+    {
+        imgPicture.setImageResource(R.drawable.ic_like);
+        imgPicture2.setImageResource(R.drawable.ic_like);
+        imgPicture3.setImageResource(R.drawable.ic_like);
+        imgPicture4.setImageResource(R.drawable.ic_like);
+        imgPicture5.setImageResource(R.drawable.ic_like);
     }
 
     public void zaladuj()
@@ -178,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this, e.getMessage(),Toast.LENGTH_SHORT).show();
         }
+        puste();
     }
 
     public void wypelnij2()
@@ -412,11 +428,72 @@ public class MainActivity extends AppCompatActivity {
             if (cur != null) {
                 switch(a)
                 {
-                    case 0: imgPicture.setImageURI(Uri.parse(lista.get(a)));break;
-                    case 1: imgPicture2.setImageURI(Uri.parse(lista.get(a)));break;
-                    case 2: imgPicture3.setImageURI(Uri.parse(lista.get(a)));break;
-                    case 3: imgPicture4.setImageURI(Uri.parse(lista.get(a)));break;
-                    case 4: imgPicture5.setImageURI(Uri.parse(lista.get(a)));break;
+                    case 0: InputStream inputStream;
+
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(Uri.parse(lista.get(a)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //imgPicture.setImageURI(Uri.parse(lista.get(a)));
+                        break;
+                    case 1: InputStream inputStream2;
+
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(Uri.parse(lista.get(a)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 2: InputStream inputStream3;
+
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(Uri.parse(lista.get(a)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 3: InputStream inputStream4;
+
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(Uri.parse(lista.get(a)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 4: InputStream inputStream5;
+
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(Uri.parse(lista.get(a)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } else {
                 //gdy nie znajdzie zdjęcia lub jest zapisane jako None
@@ -442,11 +519,72 @@ public class MainActivity extends AppCompatActivity {
             if (cur != null) {
                 switch(b)
                 {
-                    case 5: imgPicture.setImageURI(Uri.parse(lista.get(b)));break;
-                    case 6: imgPicture2.setImageURI(Uri.parse(lista.get(b)));break;
-                    case 7: imgPicture3.setImageURI(Uri.parse(lista.get(b)));break;
-                    case 8: imgPicture4.setImageURI(Uri.parse(lista.get(b)));break;
-                    case 9: imgPicture5.setImageURI(Uri.parse(lista.get(b)));break;
+                    case 5: InputStream inputStream;
+
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(Uri.parse(lista.get(b)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //imgPicture.setImageURI(Uri.parse(lista.get(a)));
+                        break;
+                    case 6: InputStream inputStream2;
+
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(Uri.parse(lista.get(b)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 7: InputStream inputStream3;
+
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(Uri.parse(lista.get(b)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 8: InputStream inputStream4;
+
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(Uri.parse(lista.get(b)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 9: InputStream inputStream5;
+
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(Uri.parse(lista.get(b)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } else {
                 //gdy nie znajdzie zdjęcia lub jest zapisane jako None
@@ -472,11 +610,72 @@ public class MainActivity extends AppCompatActivity {
             if (cur != null) {
                 switch(c)
                 {
-                    case 10: imgPicture.setImageURI(Uri.parse(lista.get(c)));break;
-                    case 11: imgPicture2.setImageURI(Uri.parse(lista.get(c)));break;
-                    case 12: imgPicture3.setImageURI(Uri.parse(lista.get(c)));break;
-                    case 13: imgPicture4.setImageURI(Uri.parse(lista.get(c)));break;
-                    case 14: imgPicture5.setImageURI(Uri.parse(lista.get(c)));break;
+                    case 10: InputStream inputStream;
+
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(Uri.parse(lista.get(c)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //imgPicture.setImageURI(Uri.parse(lista.get(a)));
+                        break;
+                    case 11: InputStream inputStream2;
+
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(Uri.parse(lista.get(c)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 12: InputStream inputStream3;
+
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(Uri.parse(lista.get(c)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 13: InputStream inputStream4;
+
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(Uri.parse(lista.get(c)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 14: InputStream inputStream5;
+
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(Uri.parse(lista.get(c)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } else {
                 //gdy nie znajdzie zdjęcia lub jest zapisane jako None
@@ -502,11 +701,72 @@ public class MainActivity extends AppCompatActivity {
             if (cur != null) {
                 switch(d)
                 {
-                    case 15: imgPicture.setImageURI(Uri.parse(lista.get(d)));break;
-                    case 16: imgPicture2.setImageURI(Uri.parse(lista.get(d)));break;
-                    case 17: imgPicture3.setImageURI(Uri.parse(lista.get(d)));break;
-                    case 18: imgPicture4.setImageURI(Uri.parse(lista.get(d)));break;
-                    case 19: imgPicture5.setImageURI(Uri.parse(lista.get(d)));break;
+                    case 15: InputStream inputStream;
+
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(Uri.parse(lista.get(d)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //imgPicture.setImageURI(Uri.parse(lista.get(a)));
+                        break;
+                    case 16: InputStream inputStream2;
+
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(Uri.parse(lista.get(d)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 17: InputStream inputStream3;
+
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(Uri.parse(lista.get(d)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 18: InputStream inputStream4;
+
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(Uri.parse(lista.get(d)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 19: InputStream inputStream5;
+
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(Uri.parse(lista.get(d)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } else {
                 //gdy nie znajdzie zdjęcia lub jest zapisane jako None
@@ -526,21 +786,82 @@ public class MainActivity extends AppCompatActivity {
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
         textView7.setText("Piątek");
-        for(int e=20;e<25;e++)
+        for(int f=20;f<25;f++)
         {
-            Cursor cur = getContentResolver().query(Uri.parse(lista.get(e)), projection, null, null, null);
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(f)), projection, null, null, null);
             if (cur != null) {
-                switch(e)
+                switch(f)
                 {
-                    case 20: imgPicture.setImageURI(Uri.parse(lista.get(e)));break;
-                    case 21: imgPicture2.setImageURI(Uri.parse(lista.get(e)));break;
-                    case 22: imgPicture3.setImageURI(Uri.parse(lista.get(e)));break;
-                    case 23: imgPicture4.setImageURI(Uri.parse(lista.get(e)));break;
-                    case 24: imgPicture5.setImageURI(Uri.parse(lista.get(e)));break;
+                    case 20: InputStream inputStream;
+
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(Uri.parse(lista.get(f)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        //imgPicture.setImageURI(Uri.parse(lista.get(a)));
+                        break;
+                    case 21: InputStream inputStream2;
+
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(Uri.parse(lista.get(f)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 22: InputStream inputStream3;
+
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(Uri.parse(lista.get(f)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 23: InputStream inputStream4;
+
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(Uri.parse(lista.get(f)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 24: InputStream inputStream5;
+
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(Uri.parse(lista.get(f)));
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
                 }
             } else {
                 //gdy nie znajdzie zdjęcia lub jest zapisane jako None
-                switch(e)
+                switch(f)
                 {
                     case 20: imgPicture.setImageResource(R.drawable.ic_like);break;
                     case 21: imgPicture2.setImageResource(R.drawable.ic_like);break;
@@ -608,33 +929,87 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.imageView:
                         Uri imageUri = data.getData();
-                        imgPicture.setImageURI(imageUri);
+                        InputStream inputStream;
+                        try
+                        {
+                            inputStream = getContentResolver().openInputStream(imageUri);
+                            Bitmap img = BitmapFactory.decodeStream(inputStream);
+                            img = Bitmap.createScaledBitmap(img,imgPicture.getWidth(),imgPicture.getHeight(),true);
+                            imgPicture.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                        }
 
                         list.add(imageUri.toString());
                         Toast.makeText(this, imageUri.toString(), Toast.LENGTH_LONG).show();
                     break;
                     case R.id.imageView2:
                         Uri imageUri2 = data.getData();
-                        imgPicture2.setImageURI(imageUri2);
+                        InputStream inputStream2;
+                        try
+                        {
+                            inputStream2 = getContentResolver().openInputStream(imageUri2);
+                            Bitmap img = BitmapFactory.decodeStream(inputStream2);
+                            img = Bitmap.createScaledBitmap(img,imgPicture2.getWidth(),imgPicture2.getHeight(),true);
+                            imgPicture2.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                        }
+
 
                         list2.add(imageUri2.toString());
                         Toast.makeText(this, imageUri2.toString(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.imageView3:
                         Uri imageUri3 = data.getData();
-                        imgPicture3.setImageURI(imageUri3);
+                        InputStream inputStream3;
+                        try
+                        {
+                            inputStream3 = getContentResolver().openInputStream(imageUri3);
+                            Bitmap img = BitmapFactory.decodeStream(inputStream3);
+                            img = Bitmap.createScaledBitmap(img,imgPicture3.getWidth(),imgPicture3.getHeight(),true);
+                            imgPicture3.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
                         list3.add(imageUri3.toString());
                         break;
                     case R.id.imageView4:
                         Uri imageUri4 = data.getData();
-                        imgPicture4.setImageURI(imageUri4);
+                        InputStream inputStream4;
+                        try
+                        {
+                            inputStream4 = getContentResolver().openInputStream(imageUri4);
+                            Bitmap img = BitmapFactory.decodeStream(inputStream4);
+                            img = Bitmap.createScaledBitmap(img,imgPicture4.getWidth(),imgPicture4.getHeight(),true);
+                            imgPicture4.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            e.printStackTrace();
+                        }
 
                         list4.add(imageUri4.toString());
                         break;
                     case R.id.imageView5:
                         Uri imageUri5 = data.getData();
-                        imgPicture5.setImageURI(imageUri5);
+                        InputStream inputStream5;
+                        try
+                        {
+                            inputStream5 = getContentResolver().openInputStream(imageUri5);
+                            Bitmap img = BitmapFactory.decodeStream(inputStream5);
+                            img = Bitmap.createScaledBitmap(img,imgPicture5.getWidth(),imgPicture5.getHeight(),true);
+                            imgPicture5.setImageBitmap(img);
+                        }
+                        catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
 
                         list5.add(imageUri5.toString());
                         break;
