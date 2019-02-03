@@ -88,6 +88,15 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
     }
 
+    public void puste()
+    {
+        imgPicture.setImageResource(R.drawable.ic_like);
+        imgPicture2.setImageResource(R.drawable.ic_like);
+        imgPicture3.setImageResource(R.drawable.ic_like);
+        imgPicture4.setImageResource(R.drawable.ic_like);
+        imgPicture5.setImageResource(R.drawable.ic_like);
+    }
+
     public void zaladuj()
     {
         try
@@ -841,6 +850,7 @@ public class MainActivity extends AppCompatActivity {
             textView7.setVisibility(View.GONE);
             button3.setVisibility(View.GONE);
             button4.setVisibility(View.GONE);
+            puste();
         }
     }
 
