@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> lista, list, list2, list3, list4, list5;
     List<String> listpn, listwt, listsr, listczw, listpt;
     private boolean isset = false;
+    public File myFile;
 
 
     @Override
@@ -83,14 +84,17 @@ public class MainActivity extends AppCompatActivity {
         listczw = new ArrayList<>();
         listpt = new ArrayList<>();
 
+        myFile = new File("/sdcard/mysdfile.txt");
+
         zaladuj();
+        zapis();
+        Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
     }
 
     public void zaladuj()
     {
         try
         {
-            File myFile = new File("/sdcard/mysdfile.txt");
             FileInputStream fIn = new FileInputStream(myFile);
             BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
             String Row = "";
@@ -127,12 +131,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void zapis()
+    {
+        try {
+            if(!myFile.exists())
+                myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
+            for(int i=0; i<lista.size();i++)
+            {
+                String li = lista.get(i);
+                myOutWriter.append(li).append("\n");
+            }
+            myOutWriter.close();
+            fOut.close();
+            Toast.makeText(this,"Zapisano do plikuuuuu", Toast.LENGTH_SHORT).show();
+
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void zapis2(View v)
     {
         lista.clear();
         wypelnij2();
         try {
-            File myFile = new File("/sdcard/mysdfile.txt");
             if(!myFile.exists())
                 myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);
@@ -222,32 +248,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void odczyt(View v)
     {
-        try
-        {
-            File myFile2 = new File("/sdcard/mysdfile.txt");
-            FileInputStream fIn = new FileInputStream(myFile2);
-            BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
-            String aDataRow = "";
-            while ((aDataRow = myReader.readLine()) != null)
-            {
-                lista.add(aDataRow);
-            }
-            myReader.close();
-            textView = (TextView) findViewById(R.id.textView);
-            textView.setText(lista.get(0));
-            Toast.makeText(v.getContext(),"Done reading SD 'mysdfile.txt'",Toast.LENGTH_SHORT).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(v.getContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+//        try
+//        {
+//            File myFile2 = new File("/sdcard/mysdfile.txt");
+//            FileInputStream fIn = new FileInputStream(myFile2);
+//            BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+//            String aDataRow = "";
+//            while ((aDataRow = myReader.readLine()) != null)
+//            {
+//                lista.add(aDataRow);
+//            }
+//            myReader.close();
+//            textView = (TextView) findViewById(R.id.textView);
+//            textView.setText(lista.get(0));
+//            Toast.makeText(v.getContext(),"Done reading SD 'mysdfile.txt'",Toast.LENGTH_SHORT).show();
+//        }
+//        catch (Exception e)
+//        {
+//            Toast.makeText(v.getContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
+//        }
 
         String[] projection = {MediaStore.MediaColumns.DATA};
         Cursor cur = getContentResolver().query(Uri.parse(lista.get(0)), projection, null, null, null);
         if (cur != null)
         {
             imgPicture.setImageURI(Uri.parse(lista.get(0)));
-            Toast.makeText(this, list.get(0), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
             Toast.makeText(this, "Istnijee", Toast.LENGTH_LONG).show();
         }
         else
@@ -340,9 +366,12 @@ public class MainActivity extends AppCompatActivity {
     public void poniedzialek()
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
+        textView7.setText("Poniedziałek");
         for(int a=0;a<5;a++)
         {
-            Cursor cur = getContentResolver().query(Uri.parse(lista.get(a)), projection, null, null, null);
+            String aab = lista.get(a).toString();
+            Uri damn = Uri.parse(aab);
+            Cursor cur = getContentResolver().query(damn, projection, null, null, null);
             if (cur != null) {
                 switch(a)
                 {
@@ -369,6 +398,7 @@ public class MainActivity extends AppCompatActivity {
     public void wtorek()
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
+        textView7.setText("Wtorek");
         for(int b=5;b<10;b++)
         {
             Cursor cur = getContentResolver().query(Uri.parse(lista.get(b)), projection, null, null, null);
@@ -398,6 +428,7 @@ public class MainActivity extends AppCompatActivity {
     public void sroda()
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
+        textView7.setText("Środa");
         for(int c=10;c<15;c++)
         {
             Cursor cur = getContentResolver().query(Uri.parse(lista.get(c)), projection, null, null, null);
@@ -427,6 +458,7 @@ public class MainActivity extends AppCompatActivity {
     public void czwartek()
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
+        textView7.setText("Czwartek");
         for(int d=15;d<20;d++)
         {
             Cursor cur = getContentResolver().query(Uri.parse(lista.get(d)), projection, null, null, null);
@@ -456,6 +488,7 @@ public class MainActivity extends AppCompatActivity {
     public void piatek()
     {
         String[] projection = {MediaStore.MediaColumns.DATA};
+        textView7.setText("Piątek");
         for(int e=20;e<25;e++)
         {
             Cursor cur = getContentResolver().query(Uri.parse(lista.get(e)), projection, null, null, null);
@@ -541,7 +574,7 @@ public class MainActivity extends AppCompatActivity {
                         imgPicture.setImageURI(imageUri);
 
                         list.add(imageUri.toString());
-                        Toast.makeText(this, imageUri.getPath().toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, imageUri.toString(), Toast.LENGTH_LONG).show();
                     break;
                     case R.id.imageView2:
                         Uri imageUri2 = data.getData();
@@ -554,19 +587,19 @@ public class MainActivity extends AppCompatActivity {
                         Uri imageUri3 = data.getData();
                         imgPicture3.setImageURI(imageUri3);
 
-                        list3.add(imageUri3.getPath().toString());
+                        list3.add(imageUri3.toString());
                         break;
                     case R.id.imageView4:
                         Uri imageUri4 = data.getData();
                         imgPicture4.setImageURI(imageUri4);
 
-                        list4.add(imageUri4.getPath().toString());
+                        list4.add(imageUri4.toString());
                         break;
                     case R.id.imageView5:
                         Uri imageUri5 = data.getData();
                         imgPicture5.setImageURI(imageUri5);
 
-                        list5.add(imageUri5.getPath().toString());
+                        list5.add(imageUri5.toString());
                         break;
                     default:
                         throw new RuntimeException("Unknow button ID");
