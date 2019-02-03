@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView, textView7;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
-    public int imd_id;
+    public int imd_id, day=1;
     List<String> lista, list, list2, list3, list4, list5;
     List<String> listpn, listwt, listsr, listczw, listpt;
     private boolean isset = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -242,7 +243,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String[] projection = {MediaStore.MediaColumns.DATA};
-        // Change the projection ap per need
         Cursor cur = getContentResolver().query(Uri.parse(lista.get(0)), projection, null, null, null);
         if (cur != null)
         {
@@ -307,9 +307,179 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void dzien()
+    public void next(View v)
     {
+        day++;
+        if(day==6)
+            day=1;
+        switch(day)
+        {
+            case 1:poniedzialek();break;
+            case 2:wtorek();break;
+            case 3:sroda();break;
+            case 4:czwartek();break;
+            case 5:piatek();break;
+        }
+    }
 
+    public void previous(View v)
+    {
+        day--;
+        if(day==0)
+            day=5;
+        switch(day)
+        {
+            case 1:poniedzialek();break;
+            case 2:wtorek();break;
+            case 3:sroda();break;
+            case 4:czwartek();break;
+            case 5:piatek();break;
+        }
+    }
+
+    public void poniedzialek()
+    {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        for(int a=0;a<5;a++)
+        {
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(a)), projection, null, null, null);
+            if (cur != null) {
+                switch(a)
+                {
+                    case 0: imgPicture.setImageURI(Uri.parse(lista.get(a)));break;
+                    case 1: imgPicture2.setImageURI(Uri.parse(lista.get(a)));break;
+                    case 2: imgPicture3.setImageURI(Uri.parse(lista.get(a)));break;
+                    case 3: imgPicture4.setImageURI(Uri.parse(lista.get(a)));break;
+                    case 4: imgPicture5.setImageURI(Uri.parse(lista.get(a)));break;
+                }
+            } else {
+                //gdy nie znajdzie zdjęcia lub jest zapisane jako None
+                switch(a)
+                {
+                    case 0: imgPicture.setImageResource(R.drawable.ic_like);break;
+                    case 1: imgPicture2.setImageResource(R.drawable.ic_like);break;
+                    case 2: imgPicture3.setImageResource(R.drawable.ic_like);break;
+                    case 3: imgPicture4.setImageResource(R.drawable.ic_like);break;
+                    case 4: imgPicture5.setImageResource(R.drawable.ic_like);break;
+                }
+            }
+        }
+    }
+
+    public void wtorek()
+    {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        for(int b=5;b<10;b++)
+        {
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(b)), projection, null, null, null);
+            if (cur != null) {
+                switch(b)
+                {
+                    case 5: imgPicture.setImageURI(Uri.parse(lista.get(b)));break;
+                    case 6: imgPicture2.setImageURI(Uri.parse(lista.get(b)));break;
+                    case 7: imgPicture3.setImageURI(Uri.parse(lista.get(b)));break;
+                    case 8: imgPicture4.setImageURI(Uri.parse(lista.get(b)));break;
+                    case 9: imgPicture5.setImageURI(Uri.parse(lista.get(b)));break;
+                }
+            } else {
+                //gdy nie znajdzie zdjęcia lub jest zapisane jako None
+                switch(b)
+                {
+                    case 5: imgPicture.setImageResource(R.drawable.ic_like);break;
+                    case 6: imgPicture2.setImageResource(R.drawable.ic_like);break;
+                    case 7: imgPicture3.setImageResource(R.drawable.ic_like);break;
+                    case 8: imgPicture4.setImageResource(R.drawable.ic_like);break;
+                    case 9: imgPicture5.setImageResource(R.drawable.ic_like);break;
+                }
+            }
+        }
+    }
+
+    public void sroda()
+    {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        for(int c=10;c<15;c++)
+        {
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(c)), projection, null, null, null);
+            if (cur != null) {
+                switch(c)
+                {
+                    case 10: imgPicture.setImageURI(Uri.parse(lista.get(c)));break;
+                    case 11: imgPicture2.setImageURI(Uri.parse(lista.get(c)));break;
+                    case 12: imgPicture3.setImageURI(Uri.parse(lista.get(c)));break;
+                    case 13: imgPicture4.setImageURI(Uri.parse(lista.get(c)));break;
+                    case 14: imgPicture5.setImageURI(Uri.parse(lista.get(c)));break;
+                }
+            } else {
+                //gdy nie znajdzie zdjęcia lub jest zapisane jako None
+                switch(c)
+                {
+                    case 10: imgPicture.setImageResource(R.drawable.ic_like);break;
+                    case 11: imgPicture2.setImageResource(R.drawable.ic_like);break;
+                    case 12: imgPicture3.setImageResource(R.drawable.ic_like);break;
+                    case 13: imgPicture4.setImageResource(R.drawable.ic_like);break;
+                    case 14: imgPicture5.setImageResource(R.drawable.ic_like);break;
+                }
+            }
+        }
+    }
+
+    public void czwartek()
+    {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        for(int d=15;d<20;d++)
+        {
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(d)), projection, null, null, null);
+            if (cur != null) {
+                switch(d)
+                {
+                    case 15: imgPicture.setImageURI(Uri.parse(lista.get(d)));break;
+                    case 16: imgPicture2.setImageURI(Uri.parse(lista.get(d)));break;
+                    case 17: imgPicture3.setImageURI(Uri.parse(lista.get(d)));break;
+                    case 18: imgPicture4.setImageURI(Uri.parse(lista.get(d)));break;
+                    case 19: imgPicture5.setImageURI(Uri.parse(lista.get(d)));break;
+                }
+            } else {
+                //gdy nie znajdzie zdjęcia lub jest zapisane jako None
+                switch(d)
+                {
+                    case 15: imgPicture.setImageResource(R.drawable.ic_like);break;
+                    case 16: imgPicture2.setImageResource(R.drawable.ic_like);break;
+                    case 17: imgPicture3.setImageResource(R.drawable.ic_like);break;
+                    case 18: imgPicture4.setImageResource(R.drawable.ic_like);break;
+                    case 19: imgPicture5.setImageResource(R.drawable.ic_like);break;
+                }
+            }
+        }
+    }
+
+    public void piatek()
+    {
+        String[] projection = {MediaStore.MediaColumns.DATA};
+        for(int e=20;e<25;e++)
+        {
+            Cursor cur = getContentResolver().query(Uri.parse(lista.get(e)), projection, null, null, null);
+            if (cur != null) {
+                switch(e)
+                {
+                    case 20: imgPicture.setImageURI(Uri.parse(lista.get(e)));break;
+                    case 21: imgPicture2.setImageURI(Uri.parse(lista.get(e)));break;
+                    case 22: imgPicture3.setImageURI(Uri.parse(lista.get(e)));break;
+                    case 23: imgPicture4.setImageURI(Uri.parse(lista.get(e)));break;
+                    case 24: imgPicture5.setImageURI(Uri.parse(lista.get(e)));break;
+                }
+            } else {
+                //gdy nie znajdzie zdjęcia lub jest zapisane jako None
+                switch(e)
+                {
+                    case 20: imgPicture.setImageResource(R.drawable.ic_like);break;
+                    case 21: imgPicture2.setImageResource(R.drawable.ic_like);break;
+                    case 22: imgPicture3.setImageResource(R.drawable.ic_like);break;
+                    case 23: imgPicture4.setImageResource(R.drawable.ic_like);break;
+                    case 24: imgPicture5.setImageResource(R.drawable.ic_like);break;
+                }
+            }
+        }
     }
 
     public void plan(View v)
@@ -322,11 +492,15 @@ public class MainActivity extends AppCompatActivity {
             radioGroup.setVisibility(View.GONE);
             textView.setVisibility(View.GONE);
             textView7.setVisibility(View.VISIBLE);
+            textView7.setText("Poniedziałek");
             button3.setVisibility(View.VISIBLE);
             button4.setVisibility(View.VISIBLE);
+            poniedzialek();
+
         }
         else
         {
+            day=1;
             button2.setText("Plan");
             isset = false;
             button.setVisibility(View.VISIBLE);

@@ -209,7 +209,8 @@
             android:layout_marginTop="35dp"
             android:visibility="gone"
             android:layout_toEndOf="@+id/imageView3"
-            android:text="Poprzedni" />
+            android:text="Poprzedni"
+            android:onClick="previous"/>
 
         <Button
             android:id="@+id/button4"
@@ -220,7 +221,8 @@
             android:layout_marginTop="35dp"
             android:visibility="gone"
             android:layout_toEndOf="@+id/button3"
-            android:text="Następny" />
+            android:text="Następny"
+            android:onClick="next"/>
 
         <TextView
             android:id="@+id/textView7"
