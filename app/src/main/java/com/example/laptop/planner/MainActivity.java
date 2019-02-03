@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public int imd_id, day=1;
     List<String> lista, list, list2, list3, list4, list5;
     List<String> listpn, listwt, listsr, listczw, listpt;
+    List<String> dodatkowa = new ArrayList<>();
     private boolean isset = false;
     public File myFile;
 
@@ -136,16 +137,17 @@ public class MainActivity extends AppCompatActivity {
     {
         try {
             if(!myFile.exists())
-                myFile.createNewFile();
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
-            for(int i=0; i<25;i++)
             {
-                myOutWriter.append("None").append("\n");
+                myFile.createNewFile();
+                FileOutputStream fOut = new FileOutputStream(myFile);
+                OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+                for (int i = 0; i < 25; i++) {
+                    myOutWriter.append("None").append("\n");
+                }
+                myOutWriter.close();
+                fOut.close();
+                Toast.makeText(this, "Zapisano do plikuuuuu", Toast.LENGTH_SHORT).show();
             }
-            myOutWriter.close();
-            fOut.close();
-            Toast.makeText(this,"Zapisano do plikuuuuu", Toast.LENGTH_SHORT).show();
 
         }
         catch (Exception e)
@@ -158,9 +160,8 @@ public class MainActivity extends AppCompatActivity {
     {
         lista.clear();
         wypelnij2();
-        try {
-            if(!myFile.exists())
-                myFile.createNewFile();
+        try
+        {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
             for(int i=0; i<lista.size();i++)
@@ -187,6 +188,11 @@ public class MainActivity extends AppCompatActivity {
         if(radioButton.getId() == R.id.pon)
         {
             wypelnij();
+            listpn.clear();
+            for (int i = 0; i < 5; i++)
+            {
+                listpn.add(dodatkowa.get(i));
+            }
         }
         else
         {
@@ -199,6 +205,11 @@ public class MainActivity extends AppCompatActivity {
         if(radioButton.getId() == R.id.wt)
         {
             wypelnij();
+            listwt.clear();
+            for (int i = 0; i < 5; i++)
+            {
+                listwt.add(dodatkowa.get(i));
+            }
         }
         else
         {
@@ -211,6 +222,11 @@ public class MainActivity extends AppCompatActivity {
         if(radioButton.getId() == R.id.sr)
         {
             wypelnij();
+            listsr.clear();
+            for (int i = 0; i < 5; i++)
+            {
+                listsr.add(dodatkowa.get(i));
+            }
         }
         else
         {
@@ -223,6 +239,11 @@ public class MainActivity extends AppCompatActivity {
         if(radioButton.getId() == R.id.czw)
         {
             wypelnij();
+            listczw.clear();
+            for (int i = 0; i < 5; i++)
+            {
+                listczw.add(dodatkowa.get(i));
+            }
         }
         else
         {
@@ -235,6 +256,11 @@ public class MainActivity extends AppCompatActivity {
         if(radioButton.getId() == R.id.pt)
         {
             wypelnij();
+            listpt.clear();
+            for (int i = 0; i < 5; i++)
+            {
+                listpt.add(dodatkowa.get(i));
+            }
         }
         else
         {
@@ -287,49 +313,60 @@ public class MainActivity extends AppCompatActivity {
 
     public void wypelnij()
     {
+        dodatkowa.clear();
         if(list.size()>=1)
         {
             lista.add(list.get(list.size()-1));
+            dodatkowa.add(list.get(list.size()-1));
         }
         else
         {
             lista.add("None");
+            dodatkowa.add("None");
         }
         //............................
         if(list2.size()>=1)
         {
             lista.add(list2.get(list2.size()-1));
+            dodatkowa.add(list2.get(list2.size()-1));
         }
         else
         {
             lista.add("None");
+            dodatkowa.add("None");
         }
         //............................
         if(list3.size()>=1)
         {
             lista.add(list3.get(list3.size()-1));
+            dodatkowa.add(list3.get(list3.size()-1));
         }
         else
         {
             lista.add("None");
+            dodatkowa.add("None");
         }
         //............................
         if(list4.size()>=1)
         {
             lista.add(list4.get(list4.size()-1));
+            dodatkowa.add(list4.get(list4.size()-1));
         }
         else
         {
             lista.add("None");
+            dodatkowa.add("None");
         }
         //............................
         if(list5.size()>=1)
         {
             lista.add(list5.get(list5.size()-1));
+            dodatkowa.add(list5.get(list5.size()-1));
         }
         else
         {
             lista.add("None");
+            dodatkowa.add("None");
         }
     }
 
