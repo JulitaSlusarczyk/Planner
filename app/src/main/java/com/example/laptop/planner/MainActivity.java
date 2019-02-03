@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         myFile = new File("/sdcard/mysdfile.txt");
 
         zaladuj();
-        zapis();
+        //zapis();
         Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
     }
 
@@ -100,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
             String Row = "";
             while ((Row = myReader.readLine()) != null)
             {
-                lista.add(Row);
+                lista.add(Row.replace("\n", ""));
             }
             myReader.close();
+            fIn.close();
 
             for(int pn=0;pn<5; pn++)
             {
@@ -369,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
         textView7.setText("Poniedziałek");
         for(int a=0;a<5;a++)
         {
-            String aab = lista.get(a).toString();
+            String aab = lista.get(a);
             Uri damn = Uri.parse(aab);
             Cursor cur = getContentResolver().query(damn, projection, null, null, null);
             if (cur != null) {
