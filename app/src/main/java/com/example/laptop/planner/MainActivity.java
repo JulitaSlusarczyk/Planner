@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         myFile = new File("/sdcard/mysdfile.txt");
 
+        zapis();
         zaladuj();
-        //zapis();
         Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
     }
 
@@ -139,10 +139,9 @@ public class MainActivity extends AppCompatActivity {
                 myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
-            for(int i=0; i<lista.size();i++)
+            for(int i=0; i<25;i++)
             {
-                String li = lista.get(i);
-                myOutWriter.append(li).append("\n");
+                myOutWriter.append("None").append("\n");
             }
             myOutWriter.close();
             fOut.close();
