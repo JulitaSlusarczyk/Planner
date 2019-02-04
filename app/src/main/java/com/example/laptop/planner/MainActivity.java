@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 myOutWriter.close();
                 fOut.close();
-                Toast.makeText(this, "Zapisano do plikuuuuu", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             }
             myOutWriter.close();
             fOut.close();
-            Toast.makeText(this,"Zapisano do pliku", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Zapisano", Toast.LENGTH_SHORT).show();
 
         }
         catch (Exception e)
@@ -837,6 +836,11 @@ public class MainActivity extends AppCompatActivity {
             button2.setText("Wróć");
             isset = true;
             button.setVisibility(View.GONE);
+            close.setVisibility(View.GONE);
+            close2.setVisibility(View.GONE);
+            close3.setVisibility(View.GONE);
+            close4.setVisibility(View.GONE);
+            close5.setVisibility(View.GONE);
             radioGroup.setVisibility(View.GONE);
             textView.setVisibility(View.GONE);
             textView7.setVisibility(View.VISIBLE);
@@ -937,7 +941,6 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         list.add(imageUri.toString());
-                        Toast.makeText(this, imageUri.toString(), Toast.LENGTH_LONG).show();
                     break;
                     case R.id.imageView2:
                         Uri imageUri2 = data.getData();
@@ -957,7 +960,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                         list2.add(imageUri2.toString());
-                        Toast.makeText(this, imageUri2.toString(), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.imageView3:
                         Uri imageUri3 = data.getData();
@@ -1031,6 +1033,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(this,"Zapis do pliku wymagany. Uruchom ponownie aplikację.",Toast.LENGTH_LONG).show();
+                    finish();
                 }
                 return;
             }
