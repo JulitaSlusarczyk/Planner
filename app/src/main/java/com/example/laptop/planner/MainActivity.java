@@ -59,7 +59,24 @@ public class MainActivity extends AppCompatActivity {
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1024);
         }
-        else {}
+        else
+        {
+            zezwolono();
+        }
+
+    }
+
+    public void puste()
+    {
+        imgPicture.setImageResource(R.drawable.ic_like);
+        imgPicture2.setImageResource(R.drawable.ic_like);
+        imgPicture3.setImageResource(R.drawable.ic_like);
+        imgPicture4.setImageResource(R.drawable.ic_like);
+        imgPicture5.setImageResource(R.drawable.ic_like);
+    }
+
+    public void zezwolono()
+    {
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -85,16 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
         zapis();
         zaladuj();
-        Toast.makeText(this, lista.get(0), Toast.LENGTH_LONG).show();
-    }
-
-    public void puste()
-    {
-        imgPicture.setImageResource(R.drawable.ic_like);
-        imgPicture2.setImageResource(R.drawable.ic_like);
-        imgPicture3.setImageResource(R.drawable.ic_like);
-        imgPicture4.setImageResource(R.drawable.ic_like);
-        imgPicture5.setImageResource(R.drawable.ic_like);
     }
 
     public void zaladuj()
@@ -1008,6 +1015,26 @@ public class MainActivity extends AppCompatActivity {
                         throw new RuntimeException("Unknow button ID");
                 }
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1024:
+                {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    zezwolono();
+                }
+                else
+                {
+                    Toast.makeText(this,"Zapis do pliku wymagany. Uruchom ponownie aplikację.",Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+
         }
     }
 }
